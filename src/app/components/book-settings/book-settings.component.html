@@ -74,7 +74,7 @@
         <button mat-raised-button color="primary" type="submit" [disabled]="isSaveButtonDisabled()">
           {{ isEditMode() ? 'Update Book' : 'Save Changes' }}
         </button>
-        <button *ngIf="isEditMode()" mat-raised-button class="remove" color="warn" (click)="removeBook()">
+        <button *ngIf="isEditMode()" mat-raised-button class="remove" color="warn" type="button" (click)="removeBook()">
           <mat-icon>delete_outline</mat-icon>
           <span>Remove</span>
         </button>

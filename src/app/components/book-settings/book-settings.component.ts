@@ -77,6 +77,7 @@ export class BookSettingsComponent implements OnInit {
 
   public removeBook(): void {
     this.manageBooksService.removeBook(this.bookForm.get('title')?.value);
+    this.router.navigate(['/my-books']);
   }
 
   public goBack(): void {

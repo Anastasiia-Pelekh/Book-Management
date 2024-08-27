@@ -71,7 +71,7 @@
       </mat-form-field>
 
       <div class="actions-buttons">
-        <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isSaveButtonDisabled()">
           {{ isEditMode() ? 'Update Book' : 'Save Changes' }}
         </button>
         <button *ngIf="isEditMode()" mat-raised-button class="remove" color="warn" (click)="removeBook()">

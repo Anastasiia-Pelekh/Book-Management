@@ -9,6 +9,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ManageBooksService } from '../../shared/services/manage-books.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookColors } from '../../shared/data/books.data';
+import { Book } from '../../shared/models/book.model';
+import { isEqual } from 'lodash';
 
 @Component({
   selector: 'app-create-book',
@@ -21,7 +23,7 @@ import { BookColors } from '../../shared/data/books.data';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   templateUrl: './book-settings.component.html',
   styleUrl: './book-settings.component.scss'
@@ -32,6 +34,8 @@ export class BookSettingsComponent implements OnInit {
   public readonly bookColors = BookColors;
   public readonly currentBookTitle = signal('');
   public readonly isEditMode = signal(false);
+
+  private readonly initialFormValue = signal<Book>({} as Book)
 
   constructor(
     private location: Location,
@@ -71,18 +75,6 @@ export class BookSettingsComponent implements OnInit {
     }
   }
 
-  private addNewBook(): void {
-    const book = this.bookForm.value;
-    this.manageBooksService.addNewBook(book);
-    this.router.navigate(['/my-books']);
-  }
-
-  private updateBook(): void {
-    const updatedBook = this.bookForm.value;
-    this.manageBooksService.updateBook(this.currentBookTitle(), updatedBook);
-    this.router.navigate(['/my-books']);
-  }
-
   public removeBook(): void {
     this.manageBooksService.removeBook(this.bookForm.get('title')?.value);
   }
@@ -99,10 +91,27 @@ export class BookSettingsComponent implements OnInit {
     this.bookForm.get('color')?.setValue(colorCode);
   }
 
+  public isSaveButtonDisabled(): boolean {
+    return isEqual(this.initialFormValue(), this.bookForm.getRawValue());
+  }
+
   private loadBookDetails(title: string): void {
     const book = this.manageBooksService.getBookList().find(b => b.title === title);
     if (book) {
+      this.initialFormValue.set({ ...book });
       this.bookForm.patchValue(book);
     }
+  }
+
+  private addNewBook(): void {
+    const book = this.bookForm.value;
+    this.manageBooksService.addNewBook(book);
+    this.router.navigate(['/my-books']);
+  }
+
+  private updateBook(): void {
+    const updatedBook = this.bookForm.value;
+    this.manageBooksService.updateBook(this.currentBookTitle(), updatedBook);
+    this.router.navigate(['/my-books']);
   }
 }

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
 import { MyBooksComponent } from './components/my-books/my-books.component';
 import { BookSettingsComponent } from './components/book-settings/book-settings.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 export const routes: Routes = [
   {

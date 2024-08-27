@@ -87,3 +87,7 @@ mat-icon {
 .content {
   background-color: var(--light-blue);
 }
+
+.active-link .list-item_title {
+  color: var(--primary-color) !important;
+}

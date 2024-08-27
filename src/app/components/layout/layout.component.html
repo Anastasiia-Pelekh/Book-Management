@@ -14,7 +14,13 @@
         </svg>          
       </mat-toolbar>
       <mat-nav-list class="nav-list">
-        <a mat-list-item routerLink="/my-books" routerLinkActive="active-link">
+        <a 
+          mat-list-item 
+          routerLink="/my-books" 
+          routerLinkActive="active-link"
+          #routerLinkActiveInstance="routerLinkActive"
+          [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
+        >
           <div class="list-item">
             <mat-icon class="list-item_icon">menu_book</mat-icon>
             <span class="list-item_title">My Books</span>

@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Book } from '../shared/models/book.model';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { Book } from '../../shared/models/book.model';
 
 @Component({
   selector: 'app-info-book-dialog',

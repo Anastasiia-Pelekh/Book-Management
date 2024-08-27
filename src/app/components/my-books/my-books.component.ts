@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ManageBooksService } from '../shared/services/manage-books.service';
-import { Book } from '../shared/models/book.model';
+import { ManageBooksService } from '../../shared/services/manage-books.service';
+import { Book } from '../../shared/models/book.model';
 import { map, Observable } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { InfoBookDialogComponent } from '../info-book-dialog/info-book-dialog.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { InfoBookDialogComponent } from '../info-book-dialog/info-book-dialog.component';
 
 @Component({
   selector: 'app-my-books',

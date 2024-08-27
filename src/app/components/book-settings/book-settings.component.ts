@@ -6,9 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ManageBooksService } from '../shared/services/manage-books.service';
+import { ManageBooksService } from '../../shared/services/manage-books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookColors } from '../shared/data/books.data';
+import { BookColors } from '../../shared/data/books.data';
 
 @Component({
   selector: 'app-create-book',

@@ -42,7 +42,7 @@ export class MyBooksComponent implements OnInit {
   public bookList$!: Observable<Book[]>;
   public filteredBooks$!: Observable<Book[]>;
 
-  public searchQuery: string = '';
+  public searchQuery = '';
 
   constructor(
     private router: Router,

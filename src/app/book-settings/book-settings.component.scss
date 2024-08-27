@@ -1,0 +1,85 @@
+.book-header {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+
+  &_title {
+    font-weight: 400;
+    font-size: 32px;
+  }
+}
+
+.book-create {
+  display: flex;
+  gap: 60px;
+
+  .book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 250px;
+
+    .book {
+      width: 250px;
+      height: 340px;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+
+  .book-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    .title {
+      width: 100%;
+    }
+
+    .color {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &-check {
+        color: var(--white);
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    .fields {
+      display: flex;
+      gap: 25px;
+
+      &-author {
+        width: 72%;
+      }
+    }
+  }
+}
+
+.mat-mdc-raised-button {
+  width: 160px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  padding: 8px;
+  height: 100%;
+}

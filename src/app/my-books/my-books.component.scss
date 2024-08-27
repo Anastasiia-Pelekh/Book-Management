@@ -1,0 +1,78 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.book-content {
+  transition: opacity 0.3s ease;
+}
+
+.book-buttons {
+  display: flex;
+  width: 60%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-container {
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    .book-buttons{
+      opacity: 1;
+      visibility: visible
+    }
+
+    .book {
+      filter: blur(5px);
+      transition: all 200ms ease-in-out;
+    }
+  }
+}
+
+.create-book {
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: var(--light-black);
+  border: 2px dashed var(--border-color-book);
+  box-shadow: none;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid var(--gray-medium);
+
+    rect, path {
+      stroke: var(--gray-medium);
+      stroke-opacity: 1;
+    }
+  }
+
+  &_title {
+    max-width: 110px;
+    font-size: 16px;
+  }
+
+  &_icon {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  height: 52px;
+
+  &.remove {
+    background-color: var(--remove-btn) !important;
+  }
+}

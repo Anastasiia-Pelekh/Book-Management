@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="book-header">
+    <h1 class="book-header_title">Settings of your book</h1>
+    <button mat-raised-button color="accent" class="footer-button" (click)="goBack()">
+      Go Back
+    </button>
+  </div>
+  <div class="book-create">
+    <div class="book-container">
+      <div class="book" [ngStyle]="{ 'background-color': bookForm.get('color')?.value }">
+        <div class="book-title">{{ bookForm.get('title')?.value || 'Title Here' }}</div>
+        <div class="book-author">{{ bookForm.get('author')?.value || 'Author Here' }}</div>
+        <div class="book-year">{{ bookForm.get('year')?.value || 'Year Here' }}</div>
+      </div>
+      <div class="book-colors">
+        <p class="title">Choose color of cover</p>
+        <div *ngFor="let color of bookColors" class="color" 
+          [ngStyle]="{'background-color': color.colorCode}" 
+          matTooltip="{{ color.name }}"
+          tabindex="0"
+          (click)="chooseColor(color.colorCode)"
+          (keydown.enter)="chooseColor(color.colorCode)"
+        >
+          <mat-icon class="color-check" *ngIf="isColorChecked(color.colorCode)">check</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="bookForm" (ngSubmit)="createBook()" class="book-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Name of book:</mat-label>
+        <input matInput formControlName="title" placeholder="Enter book title"/>
+        @if (bookForm.get('title')?.invalid) {
+          <mat-error>Name of book is required.</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="fields">
+        <mat-form-field appearance="fill" class="fields-author">
+          <mat-label>Author's name:</mat-label>
+          <input matInput formControlName="author" placeholder="Enter author name"/>
+          @if (bookForm.get('author')?.invalid) {
+            <mat-error>Author's name is required.</mat-error>
+          }
+        </mat-form-field>
+  
+        <mat-form-field class="fields-year">
+          <mat-label>Year of publication:</mat-label>
+          <input matInput formControlName="year" type="number" placeholder="Enter year"/>
+  
+          @if (bookForm.get('year')?.invalid) {
+            <mat-error>
+              @if (bookForm.get('year')?.errors?.['required']) {
+                Year of publication is required.
+              } @else if (bookForm.get('year')?.errors?.['min']) {
+                Year of publication must be at least 1000.
+              } @else if (bookForm.get('year')?.errors?.['max']) {
+                Year of publication cannot be in the future.
+              }
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Enter a description" formControlName="description" rows="4"></textarea>
+        <mat-error *ngIf="bookForm.get('description')?.invalid && bookForm.get('description')?.touched">
+          Description is required.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid">
+        {{ isEditMode() ? 'Update Book' : 'Save Changes' }}
+      </button>
+    </form>
+  </div>
+</div>

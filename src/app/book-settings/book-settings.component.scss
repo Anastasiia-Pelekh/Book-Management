@@ -72,8 +72,19 @@
   }
 }
 
+.action-buttons {
+  display: flex;
+}
+
 .mat-mdc-raised-button {
   width: 160px;
+
+  &.remove {
+    margin-left: 20px;
+    border: 2px solid var(--light-red) !important;
+    color: var(--light-red) !important;
+    background: none !important;
+  }
 }
 
 label {

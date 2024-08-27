@@ -70,9 +70,15 @@
         </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid">
-        {{ isEditMode() ? 'Update Book' : 'Save Changes' }}
-      </button>
+      <div class="actions-buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid">
+          {{ isEditMode() ? 'Update Book' : 'Save Changes' }}
+        </button>
+        <button *ngIf="isEditMode()" mat-raised-button class="remove" color="warn" (click)="removeBook()">
+          <mat-icon>delete_outline</mat-icon>
+          <span>Remove</span>
+        </button>
+      </div>
     </form>
   </div>
 </div>

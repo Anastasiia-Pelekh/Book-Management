@@ -1,25 +1,32 @@
-<div class="container book-list">
-  <div class="book create-book" tabindex="0" (click)="createBook()" (keydown.enter)="createBook()">
-    <p class="create-book_title">Create a new book now</p>
-    <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="1.5" y="1" width="48" height="48" rx="24" stroke="#9DB4C0" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
-      <path d="M25.5 19V25M25.5 25V31M25.5 25H31.5M25.5 25L19.5 25" stroke="#9DB4C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>      
-  </div>
-  @for (book of (bookList$ | async); track book.title) {
-    <div class="book-container" [@slideInOut]>
-      <div class="book" [ngStyle]="{'background-color': book.color}">
-        <div class="book-title">{{ book.title }}</div>
-        <div class="book-author">{{ book.author }}</div>
-        <div class="book-year">{{ book.year }}</div>
-      </div>
-      <div class="book-buttons">
-        <button mat-raised-button color="primary" (click)="readMore(book)">Read more</button>
-        <button mat-raised-button class="remove" color="warn" (click)="removeBook(book.title)">
-          <mat-icon>delete_outline</mat-icon>
-          <span>Remove</span>
-        </button>
-      </div>
+<div class="container">
+  <mat-form-field appearance="fill" class="search-bar">
+    <mat-label>Search</mat-label>
+    <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearch()" placeholder="Search by title or author" />
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+  <div class="book-list">
+    <div class="book create-book" tabindex="0" (click)="createBook()" (keydown.enter)="createBook()">
+      <p class="create-book_title">Create a new book now</p>
+      <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1.5" y="1" width="48" height="48" rx="24" stroke="#9DB4C0" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path d="M25.5 19V25M25.5 25V31M25.5 25H31.5M25.5 25L19.5 25" stroke="#9DB4C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>      
     </div>
-  }
+    @for (book of (filteredBooks$ | async); track book.title) {
+      <div class="book-container" [@slideInOut]>
+        <div class="book" [ngStyle]="{'background-color': book.color}">
+          <div class="book-title">{{ book.title }}</div>
+          <div class="book-author">{{ book.author }}</div>
+          <div class="book-year">{{ book.year }}</div>
+        </div>
+        <div class="book-buttons">
+          <button mat-raised-button color="primary" (click)="readMore(book)">Read more</button>
+          <button mat-raised-button class="remove" color="warn" (click)="removeBook(book.title)">
+            <mat-icon>delete_outline</mat-icon>
+            <span>Remove</span>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
 </div>

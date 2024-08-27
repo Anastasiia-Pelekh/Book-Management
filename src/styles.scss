@@ -97,3 +97,8 @@ a {
 .cdk-overlay-backdrop {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.mat-mdc-button .mat-mdc-button-persistent-ripple::before,
+.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before {
+  background-color: transparent !important;
+}

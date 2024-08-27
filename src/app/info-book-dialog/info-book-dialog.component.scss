@@ -48,6 +48,10 @@
 
     .go-back {
       color: var(--gray-darker);
+
+      &:hover {
+        color: var(--light-black);
+      }
     }
   }
 }
